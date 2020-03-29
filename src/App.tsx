@@ -13,7 +13,7 @@ import Top from "./pages/top";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background: #fefefe;
+    background: #fdfdfd;
     height:100vh;
   }
 `;
