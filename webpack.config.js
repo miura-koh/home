@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: process.env.NODE_ENV || "development",
   entry: "./src/index.tsx",
+
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].[chunkhash:8].js",
@@ -29,6 +30,38 @@ module.exports = {
         options: {
           compact: true,
         },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              compact: true,
+            },
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              svgo: {
+                plugins: [
+                  {
+                    removeViewBox: false,
+                  },
+                ],
+                floatPrecision: 2,
+              },
+            },
+          },
+        ],
       },
     ],
   },

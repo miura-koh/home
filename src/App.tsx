@@ -5,18 +5,33 @@ import {
 } from "@material-ui/core/styles";
 import styled, {
   ThemeProvider as StyledThemeProvider,
+  createGlobalStyle,
 } from "styled-components";
-import { Typography } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import theme from "./theme";
+import Top from "./pages/top";
 
-const Title = styled(Typography).attrs({ variant: "h2" })``;
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #fefefe;
+    height:100vh;
+  }
+`;
+
+const StyledContainer = styled(Container)`
+  justify-content: center;
+  align-items: center;
+`;
 
 const App: React.FunctionComponent = () => {
   return (
     <MuiStylesProvider injectFirst>
       <StyledThemeProvider theme={theme}>
         <MuiThemeProvider theme={theme}>
-          <Title>Hello React</Title>
+          <GlobalStyle />
+          <StyledContainer>
+            <Top />
+          </StyledContainer>
         </MuiThemeProvider>
       </StyledThemeProvider>
     </MuiStylesProvider>
